@@ -1,0 +1,96 @@
+local range = 50 -- Change this to the desired range
+
+while true do
+wait(0.5)
+for i, player in ipairs(game.Players:GetPlayers()) do
+    if player ~= game.Players.LocalPlayer then
+        local character = player.Character
+        if character and character:FindFirstChild("Humanoid") then
+            local distance = (character.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+            if distance <= range then
+                local espBox = character:FindFirstChild("EspBox")
+                if not espBox then
+                    espBox = Instance.new("BoxHandleAdornment")
+                    espBox.Name = "EspBox"
+                    espBox.Color3 = Color3.fromRGB(255, 110, 10)
+                    espBox.Transparency = 0.65
+                    espBox.AlwaysOnTop = true
+                    espBox.ZIndex = 0
+                    espBox.Adornee = character.HumanoidRootPart
+                    espBox.Size = Vector3.new(0, 0, 0)
+                    espBox.Parent = character
+                    
+                    local head = character:FindFirstChild("Head")
+                    local torso = character:FindFirstChild("UpperTorso")
+                    local waist = character:FindFirstChild("LowerTorso")
+                    local leftArm = character:FindFirstChild("LeftUpperArm")
+                    local rightArm = character:FindFirstChild("RightUpperArm")
+                    local leftLeg = character:FindFirstChild("LeftUpperLeg")
+                    local rightLeg = character:FindFirstChild("RightUpperLeg")
+                    
+                    if head then
+                        local headBox = espBox:Clone()
+                        headBox.Name = "HeadBox"
+                        headBox.Adornee = head
+                        headBox.Size = Vector3.new(1.1*head.Size.X, 1.1*head.Size.Y, 1.1*head.Size.Z)
+                        headBox.Parent = espBox
+                    end
+                    
+                    if torso then
+                        local torsoBox = espBox:Clone()
+                        torsoBox.Name = "TorsoBox"
+                        torsoBox.Adornee = torso
+                        torsoBox.Size = Vector3.new(1.1*torso.Size.X, 1.1*torso.Size.Y, 1.1*torso.Size.Z)
+                        torsoBox.Parent = espBox
+                    end
+                    
+                    if waist then
+                        local waistBox = espBox:Clone()
+                        waistBox.Name = "WaistBox"
+                        waistBox.Adornee = waist
+                        waistBox.Size = Vector3.new(1.1*waist.Size.X, 1.1*waist.Size.Y, 1.1*waist.Size.Z)
+                        waistBox.Parent = espBox
+                    end
+                    
+                    if leftArm then
+                        local leftArmBox = espBox:Clone()
+                        leftArmBox.Name = "LeftArmBox"
+                        leftArmBox.Adornee = leftArm
+                        leftArmBox.Size = Vector3.new(1.1*leftArm.Size.X, 1.1*leftArm.Size.Y, 1.1*leftArm.Size.Z)
+                        leftArmBox.Parent = espBox
+                    end
+                    
+                    if rightArm then
+                        local rightArmBox = espBox:Clone()
+                        rightArmBox.Name = "RightArmBox"
+                        rightArmBox.Adornee = rightArm
+                        rightArmBox.Size = Vector3.new(1.1*rightArm.Size.X, 1.1*rightArm.Size.Y,
+
+1.1*rightArm.Size.Z)
+rightArmBox.Parent = espBox
+end
+
+lua
+Copy code
+                if leftLeg then
+                    local leftLegBox = espBox:Clone()
+                    leftLegBox.Name = "LeftLegBox"
+                    leftLegBox.Adornee = leftLeg
+                    leftLegBox.Size = Vector3.new(1.1*leftLeg.Size.X, 1.1*leftLeg.Size.Y, 1.1*leftLeg.Size.Z)
+                    leftLegBox.Parent = espBox
+                end
+                
+                if rightLeg then
+                    local rightLegBox = espBox:Clone()
+                    rightLegBox.Name = "RightLegBox"
+                    rightLegBox.Adornee = rightLeg
+                    rightLegBox.Size = Vector3.new(1.1*rightLeg.Size.X, 1.1*rightLeg.Size.Y, 1.1*rightLeg.Size.Z)
+                    rightLegBox.Parent = espBox
+                end
+            end
+        elseif espBox then
+            espBox:Destroy()
+        end
+    end
+end
+end
